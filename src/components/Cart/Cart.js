@@ -2,16 +2,22 @@ import React from 'react';
 import './Cart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan,faArrowRight } from '@fortawesome/free-solid-svg-icons';
-const Cart = () => {
+const Cart = ({cart,clearCart}) => {
+    // calculation 
+    const quantity = cart.reduce((previous,next)=> previous + next.quantity,0);
+    const totalPrice = cart.reduce((previous,next)=> previous + (next.price * next.quantity),0);
+    const totalShipping = cart.reduce((previous,next)=>previous + next.shipping,0);
+    const totalTax = parseFloat(((totalPrice + totalShipping) * 0.05).toFixed(2));
+    const grandTotal = totalPrice + totalShipping + totalTax;
     return (
         <div className='cart'>
             <p className='cart-heading'>Order Summary</p>
-            <p>Selected Items: </p>
-            <p>Total Price: </p>
-            <p>Total Shipping Charge: </p>
-            <p>Tax: </p>
-            <p className='grand-total'>Grand Total: </p>
-            <button className='clear-btn'>Clear Cart <span style={{marginLeft:'5px'}}><FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></span></button>
+            <p>Selected Items: {quantity}</p>
+            <p>Total Price: Tk {totalPrice}</p>
+            <p>Shipping Charge: Tk {totalShipping}</p>
+            <p>Tax: Tk {totalTax}</p>
+            <p className='grand-total'>Grand Total: Tk {grandTotal}</p>
+            <button onClick={clearCart} className='clear-btn'>Clear Cart <span style={{marginLeft:'5px'}}><FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></span></button>
             <br />
             <button className='review-btn'>Review Order <span style={{marginLeft:'5px'}}><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></span></button>
         </div>
