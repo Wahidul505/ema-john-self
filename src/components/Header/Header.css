@@ -9,6 +9,9 @@ nav{
     align-items: center;
     justify-content: space-between;
 }
+.nav-bar img{
+    cursor: pointer;
+}
 .nav-bar a{
     text-decoration: none;
     color: white;
@@ -17,4 +20,9 @@ nav{
 }
 .nav-bar a:hover{
     color: rgb(252, 170, 17);
+}
+@media only screen and (max-width: 592px) {
+    .nav-bar{
+        width: 100%;
+    }
 }

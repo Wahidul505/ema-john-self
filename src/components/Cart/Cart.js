@@ -1,8 +1,8 @@
 import React from 'react';
 import './Cart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan,faArrowRight } from '@fortawesome/free-solid-svg-icons';
-const Cart = ({cart,clearCart}) => {
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+const Cart = ({cart,clearCart, children}) => {
     // calculation 
     const quantity = cart.reduce((previous,next)=> previous + next.quantity,0);
     const totalPrice = cart.reduce((previous,next)=> previous + (next.price * next.quantity),0);
@@ -19,7 +19,9 @@ const Cart = ({cart,clearCart}) => {
             <p className='grand-total'>Grand Total: Tk {grandTotal}</p>
             <button onClick={clearCart} className='clear-btn'>Clear Cart <span style={{marginLeft:'5px'}}><FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></span></button>
             <br />
-            <button className='review-btn'>Review Order <span style={{marginLeft:'5px'}}><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></span></button>
+            <div className='opt-btn'>
+                {children}
+            </div>
         </div>
     );
 };

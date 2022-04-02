@@ -16,7 +16,12 @@ const setToDb = (id)=>{
     }
     localStorage.setItem('cart',JSON.stringify(cart));
 }
+const removeFromDb = id =>{
+    const cart = getStoredCart();
+    delete cart[id];
+    localStorage.setItem('cart',JSON.stringify(cart));
+}
 const removeAllDb = () =>{
     localStorage.removeItem('cart');
 }
-export {setToDb, getStoredCart, removeAllDb}
+export {setToDb, getStoredCart, removeAllDb, removeFromDb}

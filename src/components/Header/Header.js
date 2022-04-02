@@ -1,16 +1,18 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../images/Logo.svg';
 import './Header.css';
 const Header = () => {
+    const navigate = useNavigate();
     return (
         <nav>
             <div className='nav-bar'>
-                <img src={logo} alt="" />
+                <img onClick={()=>navigate('/')} src={logo} alt="" />
                 <div>
-                    <a href="/shop">Shop</a>
-                    <a href="/orders">Orders</a>
-                    <a href="/description">Description</a>
-                    <a href="/about">About</a>
+                    <Link to="/shop">Shop</Link>
+                    <Link to="/orders">Orders</Link>
+                    <Link to="/inventory">Inventory</Link>
+                    <Link to="/about">About</Link>
                 </div>
             </div>
         </nav>
