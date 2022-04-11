@@ -1,10 +1,10 @@
 nav{
     background-color: #1C2B35;
+    width: 100%;
 }
 .nav-bar{
-    width: 85%;
     height: 80px;
-    margin: auto;
+    padding: 5px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
