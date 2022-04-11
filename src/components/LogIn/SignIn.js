@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -19,23 +19,31 @@ const SignIn = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const handleGetEmail = e =>{
+    const handleGetEmail = e => {
         setEmail(e.target.value);
     }
-    const handleGetPassword = e =>{
+    const handleGetPassword = e => {
         setPassword(e.target.value);
     }
-    const handleSignIn = e =>{
+    const handleSignIn = e => {
         e.preventDefault();
         signInWithEmailAndPassword(email, password);
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle();
     }
-    if(user){
-        toast.success('Sign In Successfully!', {id:'success'});
-        navigate(from, {replace:true});
-    }
+    // if(user){
+    //     toast.success('Sign In Successfully!', {id:'success'});
+    //     navigate(from, {replace:true});
+    // }
+    useEffect(() => {
+        if (user) {
+            console.log('success');
+            toast.success('Sign In Successfully!', { id: 'success' });
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, user]);
+
     return (
         <div className='form-container'>
             <Toaster
@@ -55,7 +63,7 @@ const SignIn = () => {
                 {
                     loading && <p>Loading...</p>
                 }
-                <p style={{color: 'red'}}>{error?.message}</p>
+                <p style={{ color: 'red' }}>{error?.message}</p>
                 <input className='submit-btn' type="submit" value="Sign In" />
             </form>
             <p>New to Ema-John? <Link className='form-link' to='/signUp'>Create New Account</Link></p>
