@@ -9,6 +9,7 @@ import Shipment from './components/Shipment/Shipment';
 import SignIn from './components/LogIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import RequireAuth from './components/RequireAuth/RequireAuth';
+import CompleteShipment from './components/Shipment/CompleteShipment';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           <RequireAuth>
             <Shipment />
           </RequireAuth>
+        }></Route>
+        <Route path='/shipped' element={
+          <CompleteShipment />
         }></Route>
         <Route path='/signIn' element={<SignIn />}></Route>
         <Route path='/signUp' element={<SignUp />}></Route>
